@@ -7,6 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Getter
 @Setter
 @Builder
@@ -31,6 +34,12 @@ public class EnderecoViaCepResponseDTO {
                 .cidade(this.localidade)
                 .uf(this.uf)
                 .build();
+    }
+
+    public List<EnderecoResponseDTO> toList(List<EnderecoViaCepResponseDTO> enderecoViaCepResponseDTOList){
+        return enderecoViaCepResponseDTOList.stream()
+                .map(EnderecoViaCepResponseDTO::to)
+                .collect(Collectors.toList());
     }
 
 }
